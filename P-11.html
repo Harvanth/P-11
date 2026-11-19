@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HealthNest - Form Validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8f7;
+            margin: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #087f78;
+            color: white;
+            padding: 25px;
+        }
+
+        .container {
+            background-color: white;
+            width: 80%;
+            max-width: 450px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        h2 {
+            color: #087f78;
+        }
+
+        input,
+        textarea {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #087f78;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #064e49;
+        }
+
+        #result {
+            color: #087f78;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #064e49;
+            color: white;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>HealthNest</h1>
+        <p>Preventive Healthcare and Diagnostics</p>
+    </header>
+
+    <div class="container">
+        <h2>Appointment Form</h2>
+
+        <form action="#" method="post">
+
+            <input type="text" id="name" placeholder="Enter Your Name">
+
+            <input type="text" id="phone" placeholder="Enter 10 Digit Phone Number">
+
+            <input type="text" id="age" placeholder="Enter Your Age">
+
+            <textarea id="reason" placeholder="Enter Health Problem"></textarea>
+
+            <button type="button" onclick="processForm()">
+                Submit
+            </button>
+
+        </form>
+
+        <p id="result"></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 HealthNest. All Rights Reserved.</p>
+        <p>healthnest@gmail.com</p>
+    </footer>
+
+    <script>
+
+        // JavaScript Function for Form Validation 
+        function processForm() {
+
+            // Get input values 
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            let age = document.getElementById("age").value;
+            let reason = document.getElementById("reason").value;
+
+            let result = document.getElementById("result");
+
+            // Check if any field is empty 
+            if (name == "" || phone == "" ||
+                age == "" || reason == "") {
+
+                result.innerHTML = "Please fill all the fields.";
+
+            }
+
+            // Only numbers validation 
+            else if (!/^\d{10}$/.test(phone)) {
+
+                result.innerHTML =
+                    "Please enter a valid 10 digit phone number.";
+
+            }
+
+            else if (!/^\d+$/.test(age) ||
+                Number(age) < 1 || Number(age) > 120) {
+
+                result.innerHTML =
+                    "Please enter a valid age.";
+
+            }
+
+            // If all conditions are satisfied 
+            else {
+
+                result.innerHTML =
+                    "Appointment Submitted Successfully!<br>" +
+                    "Name: " + name + "<br>" +
+                    "Phone: " + phone + "<br>" +
+                    "Age: " + age + "<br>" +
+                    "Health Problem: " + reason;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
